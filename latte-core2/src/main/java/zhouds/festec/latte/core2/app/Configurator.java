@@ -1,5 +1,7 @@
 package zhouds.festec.latte.core2.app;
 
+import android.content.Context;
+
 import java.util.WeakHashMap;
 
 /**
@@ -34,6 +36,11 @@ public class Configurator {
 
     public final void configure() {
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);
+    }
+
+    public final Configurator withApplication(Context context) {
+        LATTE_CONFIGS.put(ConfigType.APPLICATION_CONTEXT.name(), context);
+        return this;
     }
 
     public final Configurator withApiHost(String host) {

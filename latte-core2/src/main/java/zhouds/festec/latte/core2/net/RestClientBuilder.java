@@ -1,5 +1,7 @@
 package zhouds.festec.latte.core2.net;
 
+import android.content.Context;
+
 import java.util.WeakHashMap;
 
 import okhttp3.MediaType;
@@ -8,6 +10,7 @@ import zhouds.festec.latte.core2.net.callback.IError;
 import zhouds.festec.latte.core2.net.callback.IFailure;
 import zhouds.festec.latte.core2.net.callback.IRequest;
 import zhouds.festec.latte.core2.net.callback.ISuccess;
+import zhouds.festec.latte.core2.ui.LoadingStyle;
 
 /**
  * 创建者 zds
@@ -17,15 +20,29 @@ import zhouds.festec.latte.core2.net.callback.ISuccess;
  **/
 public class RestClientBuilder {
 
-    private String mUrl;
+    private String mUrl = null;
     private static final WeakHashMap<String, Object> PARAMS = RestCtreator.getParams();
-    private IRequest mRequest;
-    private ISuccess mSuccess;
-    private IFailure mFailure;
-    private IError mError;
-    private RequestBody mBody;
+    private IRequest mRequest = null;
+    private ISuccess mSuccess = null;
+    private IFailure mFailure = null;
+    private IError mError = null;
+    private RequestBody mBody = null;
+    private Context mContext = null;
+    private LoadingStyle mLoadingStyle = null;
 
     RestClientBuilder() {
+    }
+
+    public final RestClientBuilder loaderDialog(Context context, LoadingStyle loadingStyle) {
+        this.mContext = context;
+        this.mLoadingStyle = loadingStyle;
+        return this;
+    }
+
+    public final RestClientBuilder loaderDialog(Context context) {
+        this.mContext = context;
+        this.mLoadingStyle = LoadingStyle.BallClipRotatePulseIndicator;
+        return this;
     }
 
     public final RestClientBuilder url(String url) {
@@ -69,6 +86,6 @@ public class RestClientBuilder {
     }
 
     public final RestClient build() {
-        return new RestClient(mUrl, PARAMS, mRequest, mSuccess, mFailure, mError, mBody);
+        return new RestClient(mUrl, PARAMS, mRequest, mSuccess, mFailure, mError, mBody, mContext, mLoadingStyle);
     }
 }
