@@ -2,6 +2,7 @@ package zhouds.festec.latte.core2.net;
 
 import android.content.Context;
 
+import java.io.File;
 import java.util.WeakHashMap;
 
 import okhttp3.MediaType;
@@ -29,8 +30,19 @@ public class RestClientBuilder {
     private RequestBody mBody = null;
     private Context mContext = null;
     private LoadingStyle mLoadingStyle = null;
+    private File mFile = null;
 
     RestClientBuilder() {
+    }
+
+    public final RestClientBuilder file(File file) {
+        this.mFile = file;
+        return this;
+    }
+
+    public final RestClientBuilder file(String file) {
+        this.mFile = new File(file);
+        return this;
     }
 
     public final RestClientBuilder loaderDialog(Context context, LoadingStyle loadingStyle) {
@@ -86,6 +98,6 @@ public class RestClientBuilder {
     }
 
     public final RestClient build() {
-        return new RestClient(mUrl, PARAMS, mRequest, mSuccess, mFailure, mError, mBody, mContext, mLoadingStyle);
+        return new RestClient(mUrl, PARAMS, mRequest, mSuccess, mFailure, mError, mBody, mContext, mLoadingStyle, mFile);
     }
 }
