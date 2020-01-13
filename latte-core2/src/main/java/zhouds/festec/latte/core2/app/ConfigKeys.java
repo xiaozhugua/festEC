@@ -6,9 +6,11 @@ package zhouds.festec.latte.core2.app;
  *
  * @描述
  **/
-public enum ConfigType {
+public enum ConfigKeys {
     API_HOST,
     APPLICATION_CONTEXT,
     CONFIG_READY,
-    ICON
+    ICON,
+    LOADER_DELAYED,
+    INTERCEPTOR
 }
