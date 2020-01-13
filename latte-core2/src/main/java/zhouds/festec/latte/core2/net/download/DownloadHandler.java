@@ -1,4 +1,4 @@
-package zhouds.festec.latte.core2.download;
+package zhouds.festec.latte.core2.net.download;
 
 import android.os.AsyncTask;
 

@@ -11,7 +11,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
-import zhouds.festec.latte.core2.download.DownloadHandler;
+import zhouds.festec.latte.core2.net.download.DownloadHandler;
 import zhouds.festec.latte.core2.net.callback.IError;
 import zhouds.festec.latte.core2.net.callback.IFailure;
 import zhouds.festec.latte.core2.net.callback.IRequest;

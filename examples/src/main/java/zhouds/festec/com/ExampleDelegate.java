@@ -37,10 +37,7 @@ public class ExampleDelegate extends LatteDelegate {
 
     private void testRestClient() {
         RestClient.builder()
-                .url("/box_cms_v3/get_data_bykey.php?")
-                .params("model", "p212")
-                .params("up_lan_mac", "00226D676705")
-                .params("workshop", "-1")
+                .url("index")
                 .loaderDialog(getContext())
                 .success(new ISuccess() {
                     @Override
@@ -72,7 +69,6 @@ public class ExampleDelegate extends LatteDelegate {
                     }
                 })
                 .build()
-                .download();
-
+                .get();
     }
 }

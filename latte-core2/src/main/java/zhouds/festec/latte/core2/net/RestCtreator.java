@@ -38,6 +38,7 @@ public class RestCtreator {
                 .client(OKHttpHolder.OK_HTTP_CLIENT)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
+
     }
 
     private static final class OKHttpHolder {

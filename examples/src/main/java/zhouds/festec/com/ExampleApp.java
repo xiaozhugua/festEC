@@ -3,6 +3,7 @@ package zhouds.festec.com;
 import android.app.Application;
 
 import zhouds.festec.latte.core2.app.Latte;
+import zhouds.festec.latte.core2.net.interceptors.DebugInterceptor;
 
 /**
  * 创建者 zds
@@ -16,6 +17,9 @@ public class ExampleApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        Latte.init(this).withApiHost("http://192.168.130.36/").configure();
+        Latte.init(this)
+                .withApiHost("http://127.0.0.1/")
+                .withInterceptor(new DebugInterceptor("index", R.raw.test))
+                .configure();
     }
 }
