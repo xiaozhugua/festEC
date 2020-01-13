@@ -11,6 +11,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import zhouds.festec.latte.core2.download.DownloadHandler;
 import zhouds.festec.latte.core2.net.callback.IError;
 import zhouds.festec.latte.core2.net.callback.IFailure;
 import zhouds.festec.latte.core2.net.callback.IRequest;
@@ -36,10 +37,18 @@ public class RestClient {
     private final RequestBody BODY;
     private final Context CONTEXT;
     private final LoadingStyle LOADING_STYLE;
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
+
 
     private final File FILE;
 
-    public RestClient(String url, Map<String, Object> params,
+    public RestClient(String url,
+                      Map<String, Object> params,
+                      String downloadDir,
+                      String extension,
+                      String name,
                       IRequest request,
                       ISuccess success,
                       IFailure failure,
@@ -50,6 +59,9 @@ public class RestClient {
                       File file) {
         this.URL = url;
         PARAMS.putAll(params);
+        this.DOWNLOAD_DIR = downloadDir;
+        this.EXTENSION = extension;
+        this.NAME = name;
         this.REQUEST = request;
         this.SUCCESS = success;
         this.FAILURE = failure;
@@ -143,5 +155,9 @@ public class RestClient {
 
     public final void delete() {
         request(HttpMethod.DELETE);
+    }
+
+    public final void download() {
+        new DownloadHandler(URL, REQUEST, SUCCESS, FAILURE, ERROR, DOWNLOAD_DIR, EXTENSION, NAME).handleDownload();
     }
 }
